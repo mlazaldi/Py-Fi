@@ -3,7 +3,6 @@ from    flask       import  Blueprint, render_template, jsonify, redirect, url_f
 import  subprocess
 from    dash        import  Dash
 from    templates   import  *
-import  yfinance    as yf  
 
 views    =   Blueprint(__name__, "views")
 
