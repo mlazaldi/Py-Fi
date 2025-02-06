@@ -65,6 +65,7 @@
   text-decoration: none;
   height: 100%;
   transition: all 0.3s ease;
+  padding-right: 50%;
 }
 
 .navbar__btn {
@@ -123,7 +124,6 @@
           opacity: 1;
           transition: all 0.5s ease;
           z-index: -1;
-          /* background-color: #131313; */
         }
 
         .navbar__menu.active {
@@ -216,6 +216,21 @@ body {
    background: linear-gradient(to right, #292E49, #536976);
    
     */
+}
+
+.spinner {
+  background-color: orangered;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 25px solid white;
+  border-top: 20px solid indigo;
+  animation: ani 2.5s linear infinite; 
+}
+@keyframes  ani {
+  to{
+    transform: rotate(360deg);
+  }
 }
 
 address {

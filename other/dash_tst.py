@@ -83,26 +83,4 @@ fig.update_layout(
 
 #display(data)
 fig.show()
-
-#---------------------------------------------------------------------------------------------------
-# code to prepare fig for web app display
-fig.write_html(buffer)
-
-html_bytes  = buffer.getvalue().encode()
-encoded     = b64encode(html_bytes).decode()
-
-app.layout = html.Div([
-    html.H4('Simple plot export options'),
-    html.P("↓↓↓ try downloading the plot as PNG ↓↓↓", style={"text-align": "right", "font-weight": "bold"}),
-    dcc.Graph(id="graph", figure=fig),
-    html.A(
-        html.Button("Download as HTML"), 
-        id="download",
-        href="data:text/html;base64," + encoded,
-        download="plotly_graph.html"
-    )
-])
-
-
-app.run_server(debug=True)
 #%%
