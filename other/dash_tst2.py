@@ -3,7 +3,7 @@ import  pandas                  as      pd
 import  psycopg2                as      db
 import  plotly.express          as      px  # (version 4.7.0 or higher)
 import  plotly.graph_objects    as      go
-from    common                  import  no_phi_db_connect
+#from    common                  import  no_phi_db_connect
 from    dash                    import  Dash, dcc, html, Input, Output  # pip install dash (version 2.0.0 or higher)
 import  yfinance                as yf  
 from    plotly.subplots         import make_subplots

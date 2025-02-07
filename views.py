@@ -17,6 +17,11 @@ def chart_js():
     return render_template("graph.html")
 
 
+@views.route("/plotly",endpoint='four')
+def chart_js():
+    return render_template("graph2.html")
+
+
 # @views.route('/data',endpoint='three')
 # def data():
 #     try:
