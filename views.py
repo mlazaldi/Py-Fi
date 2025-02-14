@@ -1,8 +1,9 @@
 #%%
-from    flask       import  Blueprint, render_template, jsonify, redirect, url_for
+from    flask       import  Blueprint, render_template, jsonify, redirect, url_for, send_from_directory
 import  subprocess
 from    dash        import  Dash
 from    templates   import  *
+import  os 
 
 views    =   Blueprint(__name__, "views")
 
@@ -18,7 +19,7 @@ def chart_js():
 
 
 @views.route("/plotly",endpoint='four')
-def chart_js():
+def plotly_chart():
     return render_template("graph2.html")
 
 
@@ -27,7 +28,9 @@ def chart_js():
 #     try:
 #         # Execute your script here
 #         result = subprocess.check_output(['python', '/other/prepare_chartjs.py'], stderr=subprocess.STDOUT)
-#         return jsonify({'result': result.decode('utf-8')})
+#         #return jsonify({'result': result.decode('utf-8')})
+#         return jsonify(data_dict)
+#         return render_template('/indewxl', df=df)
 #     except subprocess.CalledProcessError as e:
 #         return jsonify({'error': e.output.decode('utf-8')}), 500
     
@@ -53,5 +56,6 @@ def data():
         df.reset_index(drop=True, inplace=True)
         data_dict       =   df.to_dict(orient='records')
         return jsonify(data_dict)
+     
 
 # %%

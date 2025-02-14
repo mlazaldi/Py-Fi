@@ -33,8 +33,6 @@
         </ul>
     </div>
 </nav>
-<script src="/static/app.js"></script>
-</head>
 <body>
     <h2>chartjs style for web app:</h2>
     <p>
@@ -42,6 +40,13 @@
     </p>
     <span style="height: 124px;">&nbsp;</span>
 </body>
+<div class="chartCard">
+    <div class="chartBox">
+      <canvas id="yfinance_Chartjs"></canvas>
+    </div>
+</div>
+<script src="/static/app.js"></script>
+</head>
 <body>
     <canvas id="yfinance_Chartjs" width="500" height="200"></canvas>
     <script>
@@ -71,10 +76,26 @@
                                     }]
                     },
                 options: {
+                    maintainAspecRatio: false, 
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                            x: [ 
+                                {
+                                        display: true,
+                                        type: 'time',
+                                        time: {
+                                                parser: 'MM/DD/YYYY',
+                                                tooltipFormat: 'MM/DD/YYYY',
+                                                unit: 'month',
+                                                unitStepSize: 1,
+                                                displayFormats: {
+                                                    month: 'MMM YYYY'
+                                                    }
+                                            }
+                                }
+                            ],
+                        // y: {
+                        //     beginAtZero: true
+                        // }
                     }
                 }
             });
