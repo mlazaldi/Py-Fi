@@ -2,8 +2,10 @@
 from    flask       import  Blueprint, render_template, jsonify, redirect, url_for, send_from_directory
 import  subprocess
 from    dash        import  Dash
-from    templates   import  *
-import  os 
+import  sys
+import  os
+file_dir = os.path.dirname(__file__)
+sys.path.append(file_dir)
 
 views    =   Blueprint(__name__, "views")
 

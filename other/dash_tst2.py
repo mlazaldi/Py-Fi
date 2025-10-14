@@ -1,6 +1,6 @@
 #%%
 import  pandas                  as      pd
-import  psycopg2                as      db
+# import  psycopg2                as      db
 import  plotly.express          as      px  # (version 4.7.0 or higher)
 import  plotly.graph_objects    as      go
 #from    common                  import  no_phi_db_connect
