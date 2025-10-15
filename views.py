@@ -24,12 +24,13 @@ def chart_js():
 def data():
         import  pandas              as  pd
         import  yfinance            as  yf  
+        import  time
 
         #---------------------------------------------------------------------------------------------------
         #VARIABLES
-        ticker  =   "GC=F"
-        ticker2 =   "DX-Y.NYB"
+        ticker  =   "SI=F"
         start_  =   "2024-01-01"
+        ticker2 =   "DX-Y.NYB"
         end_    =   "2023-12-31"
 
 
@@ -41,11 +42,17 @@ def data():
         df              =   data[["Date","Close"]]
         df.reset_index(drop=True, inplace=True)
         data_dict       =   df.to_dict(orient='records')
+        time.sleep(2) 
         return jsonify(data_dict)
 
 
+@views.route("/plotly",endpoint='four')
+def chart_js():
+    return render_template("graph2.html")
+
+
 #  TESTING ---------------------------------------------------------------------------------------------------
-# @views.route("/plotly",endpoint='four')
+# @views.route("/plotly",endpoint='five')
 # def render_dashboard():
 #     return redirect('/pathname')  # Redirect to Dash app
 
