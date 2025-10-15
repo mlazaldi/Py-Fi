@@ -4,14 +4,15 @@
 from    dash                    import  Dash, dcc, html, Input, Output, State 
 import  yfinance                as      yf  
 import  plotly.graph_objs       as      go 
+# import  streamlit               as      st
 
 
-app = Dash()
+dash_app = Dash()
 
 
 #---------------------------------------------------------------------------------------------------
 #HTML LAYOUT
-app.layout  =   html.Div(
+dash_app.layout  =   html.Div(
                         style={'backgroundColor': '#111111', 'color': '#FFFFFF', 'padding': '20px'},
                         
                         children=[
@@ -46,7 +47,7 @@ app.layout  =   html.Div(
 
 #---------------------------------------------------------------------------------------------------
 #INTERACTIVE FUNCTIONALITY
-@app.callback(
+@dash_app.callback(
                 [  
                     Output(component_id ='candlestick-chart' , component_property   = 'figure'),
                     Output(component_id ='chart-container'   , component_property   = 'style')
@@ -63,26 +64,29 @@ app.layout  =   html.Div(
 
 def update_chart(n_clicks, ticker, start_date, end_date):
     if n_clicks > 0:
-        df = yf.download(ticker, start=start_date, end=end_date)
-        df.reset_index(level=[0],inplace=True)
-        df.columns    =   df.columns.get_level_values(0)
+        df              =   yf.download(ticker, start=start_date, end=end_date,)
+        df.columns      =   df.columns.get_level_values(0)
+        symb            =   yf.Ticker(ticker)
+        company_name    =   symb.info.get("longName", ticker)
 
         fig = go.Figure(data=[go.Candlestick(
                                                  x       =   df.index
-                                                ,open    =   df['Open']
-                                                ,close   =   df['Close']
-                                                ,high    =   df['High']
-                                                ,low     =   df['Low']
+                                                ,open    =   df['Open'  ]
+                                                ,close   =   df['Close' ]
+                                                ,high    =   df['High'  ]
+                                                ,low     =   df['Low'   ]
                                             )
                                 ]
                         )
 
         fig.update_layout(
-             title                       =   f'Candlestick Char of {ticker}'
-            ,xaxis_title                 =   'Date'
-            ,yaxis_title                 =   'Price (USD)'
-            ,xaxis_rangeslider_visible   =   False
-            ,template                    =   'plotly_dark'
+             title                      =   f'Candlestick Char of "{company_name}"'
+            ,xaxis_title                =   'Date'
+            ,yaxis_title                =   'Price (USD)'
+            ,xaxis_rangeslider_visible  =   False
+            ,template                   =   'plotly_dark'    
+            ,yaxis                      =   dict(tickformat=",",tickprefix='$')  # Add dollar sign as prefix
+            ,xaxis                      =   dict(tickformat="%b %Y") # Display abbreviated month and year
         )
 
         return fig, {'visibility': 'visible'}
@@ -90,6 +94,6 @@ def update_chart(n_clicks, ticker, start_date, end_date):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    dash_app.run(debug=True)
 
 #%%

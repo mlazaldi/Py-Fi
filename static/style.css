@@ -114,6 +114,7 @@
   border-radius: 20px;
   border: solid 3px rgba(54, 162, 235, 1);
   background: white;
+  margin: auto;
 }
 
 @media screen and (max-width: 960px) {

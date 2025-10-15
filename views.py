@@ -19,22 +19,6 @@ def home():
 def chart_js():
     return render_template("graph.html")
 
-
-@views.route("/plotly",endpoint='four')
-def plotly_chart():
-    return render_template("graph2.html")
-
-
-# @views.route('/data',endpoint='three')
-# def data():
-#     try:
-#         # Execute your script here
-#         result = subprocess.check_output(['python', '/other/prepare_chartjs.py'], stderr=subprocess.STDOUT)
-#         #return jsonify({'result': result.decode('utf-8')})
-#         return jsonify(data_dict)
-#         return render_template('/indewxl', df=df)
-#     except subprocess.CalledProcessError as e:
-#         return jsonify({'error': e.output.decode('utf-8')}), 500
     
 @views.route('/data',endpoint='three')
 def data():
@@ -58,6 +42,12 @@ def data():
         df.reset_index(drop=True, inplace=True)
         data_dict       =   df.to_dict(orient='records')
         return jsonify(data_dict)
-     
+
+
+#  TESTING ---------------------------------------------------------------------------------------------------
+# @views.route("/plotly",endpoint='four')
+# def render_dashboard():
+#     return redirect('/pathname')  # Redirect to Dash app
+
 
 # %%
